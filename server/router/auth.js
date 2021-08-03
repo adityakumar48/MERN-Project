@@ -34,4 +34,26 @@ router.post('/register', async (req,res)=>{
 
 })
 
+router.post('/signin',async (req,res)=>{
+    
+
+    try{
+        const { email, password } = req.body;
+        if(!email || !password ){
+            return res.status(400).json({error:"Please Fill Vaild Details "})
+        }
+
+        const userLogin = await User.findOne({email:email});
+
+        !userLogin?res.status(400).json({error:"Please Enter Vaild Details "}):res.json({message:"user Signin Successfully"})
+
+    
+    }catch(err){
+        console.log(err)
+    }
+
+
+    
+    
+})
 module.exports = router;
