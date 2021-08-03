@@ -18,7 +18,7 @@ const PORT = process.env.PORT;
 
 // MiddleWare
 const middleware = (req,res,next) =>{
-    console.log(`Helllo My Middleware`);
+    console.log(`Hello My Middleware`);
     next();
 }
 // app.get('/', (req,res)=>{
