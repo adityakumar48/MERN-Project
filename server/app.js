@@ -5,6 +5,14 @@ const app = express();
 
 dotenv.config({path:'./config.env'});
 require('./db/conn')
+// const User = require('./model/userSchema')
+
+app.use(express.json());
+// link Router File
+app.use(require('./router/auth'))
+
+
+
 const PORT = process.env.PORT;
 
 
@@ -13,15 +21,15 @@ const middleware = (req,res,next) =>{
     console.log(`Helllo My Middleware`);
     next();
 }
-app.get('/', (req,res)=>{
-    res.send(`Hello World From The Sever`);
-});
-app.get('/about',middleware, (req,res)=>{
-    res.send(`Hello about From The Sever`);
-});
-app.get('/contact', (req,res)=>{
-    res.send(`Hello contact From The Sever`);
-});
+// app.get('/', (req,res)=>{
+//     res.send(`Hello World From The Sever`);
+// });
+// app.get('/about',middleware, (req,res)=>{
+//     res.send(`Hello about From The Sever`);
+// });
+// app.get('/contact', (req,res)=>{
+//     res.send(`Hello contact From The Sever`);
+// });
 
 
 
