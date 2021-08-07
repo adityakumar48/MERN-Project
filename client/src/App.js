@@ -1,4 +1,4 @@
-import {Route} from 'react-router-dom';
+import {Route,Switch} from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
@@ -6,12 +6,16 @@ import About from './components/About';
 import Contact from './components/Contact';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import ErrorPage from './components/ErrorPage';
 
 
 function App() {
   return (
-    <div>
+    <>
       <Navbar />
+      <Switch>
+
+      
       <Route exact path='/'>
        <Home  />
       </Route>
@@ -28,7 +32,11 @@ function App() {
        <Signup />
       </Route>
       
-    </div>
+      <Route>
+          <ErrorPage />
+      </Route>
+      </Switch>
+    </>
   );
 }
 
