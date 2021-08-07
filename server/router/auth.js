@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
+const authenticate = require('../middleware/authenticate')
 
 require("../db/conn");
 const User = require("../model/userSchema");
@@ -49,7 +50,7 @@ router.post("/signin", async (req, res) => {
         const token = await userLogin.generateAuthToken();
         console.log(token);
 
-        res.cookie('jwttoken',token,{
+        res.cookie('jwtoken',token,{
           expires:new Date(Date.now()+ 25892000000),
           httpOnly:true,
         });
@@ -66,5 +67,13 @@ router.post("/signin", async (req, res) => {
     console.log(err);
   }
 });
+
+// About Us
+
+router.get('/about',authenticate, (req,res)=>{
+    console.log(`Hello about From The Sever`);
+    res.send(req.rootUser)
+});
+
 
 module.exports = router;
