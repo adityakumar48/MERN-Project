@@ -1,10 +1,11 @@
-import React,{useEffect} from "react";
+import React,{useEffect,useState} from "react";
 import {useHistory} from 'react-router-dom'
 
 
 const About = () => {
 
   const history = useHistory();
+  const [userData,setUserData] = useState({});
     const callAboutPage = async () => {
       try {
         const res = await fetch('/about',{
@@ -19,6 +20,7 @@ const About = () => {
 
         const data = await res.json();
         console.log(data);
+        setUserData(data)
 
         if (!res.status===200) {
           const error = new Error(res.error)
@@ -41,8 +43,8 @@ const About = () => {
           <div className="row">
             <div className="col-md-6">
               <div className="">
-                <h5>Aditya</h5>
-                <h6>Web Developer</h6>
+                <h5>{userData.name}</h5>
+                <h6>{userData.work}</h6>
                 <p className="mt-3 mb-3">
                   RANKINGS <span>1/10</span>
                 </p>
@@ -101,7 +103,7 @@ const About = () => {
                                 <label>user ID</label>
                             </div>
                             <div className="col-md-6"> 
-                                <p>6268887802</p>
+                                <p>{userData._id}</p>
                             </div>
                         </div>
                         <div className="row mt-3">
@@ -109,31 +111,31 @@ const About = () => {
                                 <label>Name</label>
                             </div>
                             <div className="col-md-6"> 
-                                <p>Aditya</p>
+                                <p>{userData.name}</p>
                             </div>
                         </div>
                         <div className="row mt-3">
                             <div className="col-md-6">
-                                <label>Name</label>
+                                <label>Email</label>
                             </div>
                             <div className="col-md-6"> 
-                                <p>Aditya</p>
+                                <p>{userData.email}</p>
                             </div>
                         </div>
                         <div className="row mt-3">
                             <div className="col-md-6">
-                                <label>Name</label>
+                                <label>Phone</label>
                             </div>
                             <div className="col-md-6"> 
-                                <p>Aditya</p>
+                                <p>{userData.phone}</p>
                             </div>
                         </div>
                         <div className="row mt-3">
                             <div className="col-md-6">
-                                <label>Name</label>
+                                <label>Profession</label>
                             </div>
                             <div className="col-md-6"> 
-                                <p>Aditya</p>
+                                <p>{userData.work}</p>
                             </div>
                         </div>
                         <div className="tab-pane fade show active" id="profile" role="tabpanel" aria-aria-labelledby="profile-tab">

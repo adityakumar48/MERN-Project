@@ -75,5 +75,10 @@ router.get('/about',authenticate, (req,res)=>{
     res.send(req.rootUser)
 });
 
+// user data contact or home 
+router.get('/getdata',authenticate,(req,res)=>{
+  console.log(`Hello Contact From The Sever`);
+  res.send(req.rootUser)
+})
 
 module.exports = router;
